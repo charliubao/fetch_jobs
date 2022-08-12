@@ -20,13 +20,13 @@ var str = keywords.join(' OR ');
 var params = { 
     q: '(' + str + ') -is:retweet since:' + getDate(), 
     lang: 'en',
-    count: 500,
+    count: 10000,
     tweet_mode: 'extended'
 };
 
 function getData(err, data, response) {
     var tweets = data.statuses;
-    fs.readFile('./test2.json', 'utf8', function readFileCallback(err, data){
+    fs.readFile('./test.json', 'utf8', function readFileCallback(err, data){
         if (err){
             console.log(err);
         } else {
@@ -40,7 +40,7 @@ function getData(err, data, response) {
             }
         }
         json = JSON.stringify(obj);
-        fs.writeFile('./test2.json', json, 'utf8', err => {
+        fs.writeFile('./test.json', json, 'utf8', err => {
             if (err) {
                 console.log('Error writing file', err)
             } else {
