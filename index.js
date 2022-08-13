@@ -34,8 +34,9 @@ function getData(err, data, response) {
 
             for(var i=0; i< tweets.length; i++) {
                 let some_text = tweets[i].full_text;
-                if(!some_text.startsWith("RT ")) {
-                    obj.push({username: tweets[i].user.name, text:some_text});
+                if(!some_text.startsWith("RT ") && some_text.includes("https://")) {
+                    let link = some_text.slice(some_text.indexOf("https://"), some_text.indexOf("https://") + 23);
+                    obj.push({username: tweets[i].user.name, text:some_text, link:link});
                 }
             }
         }
